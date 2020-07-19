@@ -1,0 +1,63 @@
+/* body에 class를 추가함으로써 padding을 없앨 수 있다. 
+body는 기본값으로 padding을 가지고 있다. 이를 제거해야 한다.*/
+.chats-body {
+  padding: 0;
+}
+
+/* 그리고 나서 헤더와 status bar에 다시 패딩을 적용시켰다. */
+.chats-body .header,
+.chats-body .status-bar {
+  padding: 0px 20px;
+}
+
+.chat {
+  background-image: url("../images/chatBg.png");
+  /* 스크롤을 해도 배경화면이 가득 차게 보여준다. */
+  min-height: 100vh;
+}
+
+.chat__write {
+  position: fixed;
+  bottom: 50px;
+
+  /* fixed position에서 가운데 정렬 하는 법 */
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  /*  */
+
+  width: 80%;
+  display: flex;
+  background-color: #fcfcfc;
+
+  /* 수평 / 수직 / 블러 값을 변수로 준다. */
+  /* rgba는 rgb값 + opacity 값 */
+  /* 방향만 다르게 두개를 만들어 아래 위로 음영을 준다. */
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.2),
+    0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  justify-content: space-between;
+  align-items: center;
+  /*  */
+
+  padding: 0px 20px;
+  border-radius: 40px;
+}
+
+.chat__write i {
+  font-size: 22px;
+}
+
+.chat__write-column:nth-child(2) {
+  width: 80%;
+}
+
+.chat__write-column input {
+  padding: 20px 10px;
+  width: 100%;
+  border: none;
+  font-size: 14px;
+}
+
+.chat__write-column input:focus {
+  outline: none;
+}

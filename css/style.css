@@ -4,13 +4,17 @@
 @import "status-bar.css";
 @import "header.css";
 @import "nav-bar.css";
-
+@import "friend.css";
+@import "friends.css";
+@import "find.css";
+@import "more.css";
+@import "settings.css";
+@import "chat.css";
 /* 네비게이션 바 아이콘 설정할 때 space-between이 잘 안돼서 넣은 기능 */
 /* 패딩을 집어넣게 되면 전체 '잘림'현상이 일어나게 된다 
 예를 들어 박스의 크기가 300인데 20의 패딩이 들어가면 
 contents의 크기는 원래 300 + 패딩 20 = 320으로 늘어나게 되고 
 브라우져는 300까지밖에 보여주지 못해 contents의 20은 잘리게 된다. */
-
 /* --> padding을 추가해도 box가 그만큼 커지지 않게 해줘 
 --> width를 280만 갖게 해줘 물론 공간을 잃게되지만 상관 없어 */
 * {
@@ -27,6 +31,7 @@ body {
 /* 한번 클릭했을 때 색상 바뀌지 않는 기능 */
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 .nav .nav__list-link {
