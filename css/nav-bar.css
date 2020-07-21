@@ -16,3 +16,20 @@
 .nav i {
   font-size: 20px;
 }
+
+@keyframes showNavBar {
+  from {
+    transform: translateY(80px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.nav {
+  /* 보여진 채로 load되는 것을 막기 위해 처음에 숨기는 기술 */
+  transform: translateY(80px);
+  animation: showNavBar 0.5s ease-out forwards;
+  /* 처음의 애니메이션을 기다린다. */
+  animation-delay: 0.2s;
+}

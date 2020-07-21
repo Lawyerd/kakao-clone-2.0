@@ -1,63 +1,212 @@
+.header-wrapper {
+  z-index: 2;
+  background-color: whitesmoke;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+}
+
 /* body에 class를 추가함으로써 padding을 없앨 수 있다. 
 body는 기본값으로 padding을 가지고 있다. 이를 제거해야 한다.*/
 .chats-body {
   padding: 0;
+  padding-top: 100px;
+  background-image: url("../images/chatBg.png");
+  /* 스크롤을 해도 배경화면이 가득 차게 보여준다. */
+  min-height: 1000vh;
 }
 
 /* 그리고 나서 헤더와 status bar에 다시 패딩을 적용시켰다. */
 .chats-body .header,
 .chats-body .status-bar {
-  padding: 0px 20px;
+  padding: 10px 20px;
+  margin-bottom: 0px;
 }
 
-.chat {
-  background-image: url("../images/chatBg.png");
-  /* 스크롤을 해도 배경화면이 가득 차게 보여준다. */
-  min-height: 100vh;
+.chats-body .header {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-.chat__write {
+.chat__write-container {
   position: fixed;
-  bottom: 50px;
-
+  bottom: 0;
   /* fixed position에서 가운데 정렬 하는 법 */
-  margin: 0 auto;
+  margin: 0px auto;
   left: 0;
   right: 0;
   /*  */
-
-  width: 80%;
   display: flex;
-  background-color: #fcfcfc;
-
-  /* 수평 / 수직 / 블러 값을 변수로 준다. */
-  /* rgba는 rgb값 + opacity 값 */
-  /* 방향만 다르게 두개를 만들어 아래 위로 음영을 준다. */
-  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.2),
-    0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
   justify-content: space-between;
   align-items: center;
-  /*  */
+  padding: 0px;
+}
 
-  padding: 0px 20px;
+@keyframes float {
+  0% {
+    transform: translateY(-50px);
+    box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.2),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3),
+      0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  }
+  50% {
+    transform: translateY(-53px);
+    box-shadow: 0 30px 60px -60px rgba(50, 50, 93, 0.2),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3),
+      0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  }
+  100% {
+    transform: translateY(-50px);
+    box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.2),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3),
+      0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  }
+}
+
+.chat__write {
+  bottom: 0px;
+  width: 100%;
+  border-radius: 0;
+  padding: 20px 60px;
+  border: none;
+  font-size: 14px;
+  left: 0;
+  right: 0;
+  margin: 0;
+
+  margin: 0 auto;
+}
+
+.chat__write:focus {
+  transition: all 0.5s ease-in-out;
+  outline: none;
+  width: 80%;
   border-radius: 40px;
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.2),
+    0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  animation: float 2s linear infinite forwards;
+}
+
+.chat__write:focus ~ .chat__icon {
+  opacity: 0;
 }
 
 .chat__write i {
   font-size: 22px;
 }
+.chat__icon {
+  font-size: 18px;
+  transition: opacity 0.5s ease-in-out;
+}
+.chat__icon-left {
+  position: absolute;
+  left: 10px;
+}
+.chat__icon-right {
+  position: absolute;
+  right: 10px;
+}
 
-.chat__write-column:nth-child(2) {
+/* .chat__write-column:nth-child(2) {
   width: 80%;
+} */
+
+/* 입력창 */
+
+.chat-screen .chat__messages {
+  border-top: 1px solid #f7f7f7;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
 }
 
-.chat__write-column input {
-  padding: 20px 10px;
-  width: 100%;
-  border: none;
+.chat__messages .chat__timestamp {
+  background-color: white;
+  opacity: 60%;
+  margin-top: 20px;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.message {
+  display: flex;
+  align-items: flex-start;
+
+  margin-bottom: 20px;
+}
+
+.incomming-message img {
+  width: 30px;
+  border-radius: 15px;
+  margin-right: 15px;
+}
+
+.incomming-message {
+  align-self: flex-start;
+}
+
+.sent-message {
+  align-self: flex-end;
+}
+
+.message .message__bubble {
+  background-color: white;
+
   font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  display: block;
 }
 
-.chat__write-column input:focus {
-  outline: none;
+.incomming-message .message__author {
+  margin-bottom: 3px;
+  padding-left: 3px;
+  display: block;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.incomming-message .message__bubble {
+  border-bottom-left-radius: 0px;
+  background-image: linear-gradient(to right, #ffffff, #cfcfcf);
+}
+
+.sent-message .message__bubble {
+  border-bottom-right-radius: 0px;
+  background-image: linear-gradient(to right, #cfcfcf, #ffffff);
+}
+
+@keyframes incomingAnimaition {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.incomming-message {
+  animation: incomingAnimaition 0.5s ease-out forwards;
+}
+
+@keyframes sentAnimaition {
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.sent-message {
+  animation: sentAnimaition 0.5s ease-out forwards;
 }
